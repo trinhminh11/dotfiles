@@ -108,6 +108,42 @@ chmod -R +x "$DOTFILESHOME/scripts/"
 export PATH="$PATH:$DOTFILESHOME/scripts"
 
 # ====================================================================================================================================
+# Hack Nerd Font Installation
+
+# Check if the font is already installed
+if ! fc-list | grep -i "Hack Nerd Font" > /dev/null; then
+    __fontname="Hack Nerd Font"
+    __fontdir="$HOME/.local/share/fonts"
+    __font_file="$__fontdir/HackNerdFont-Regular.ttf"
+    __download_url="https://github.com/ryanoasis/nerd-fonts/releases/latest/download/Hack.zip"
+    __temp_dir="/tmp/hack_nerd_font_install"
+
+    # Create necessary directories
+    mkdir -p "$__fontdir"
+    mkdir -p "$__temp_dir"
+    # Download and unzip the font
+    echo "Downloading $__fontname..."
+    curl -L -o "$__temp_dir/Hack.zip" "$__download_url"
+    echo "Extracting font files..."
+    unzip -o "$__temp_dir/Hack.zip" -d "$__temp_dir"
+    # Move TTF files to font directory
+    find "$__temp_dir" -iname "*HackNerdFont*.ttf" -exec cp {} "$__fontdir/" \;
+    # Clean up
+
+    rm -rf "$TEMP_DIR"
+    # Refresh font cache
+    echo "Updating font cache..."
+    fc-cache -f "$__fontdir"
+    echo "$__fontname installed successfully."
+
+    unset __fontname
+    unset __fontdir
+    unset __font_file
+    unset __download_url
+    unset __temp_dir
+fi
+
+# ====================================================================================================================================
 # Pure prompt
 PURE_GIT_PULL=0
 if [[ $OSTYPE == darwin* ]]; then
