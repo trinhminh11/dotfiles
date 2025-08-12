@@ -114,7 +114,6 @@ if [[ $OSTYPE == darwin* ]]; then
     puredir="$(brew --prefix)/share/zsh/site-functions"
     if [ ! -f "$puredir/prompt_pure_setup" ]; then
         brew install pure
-        cp "$DOTFILESHOME/prompt_pure_setup" "$puredir/prompt_pure_setup"
     fi
     fpath+=("$puredir")
 else
@@ -122,10 +121,10 @@ else
     puredir="$HOME/.zsh/pure"
     if [ ! -d "$puredir" ]; then
         git clone https://github.com/sindresorhus/pure.git "$HOME/.zsh/pure"
-        cp "$DOTFILES_HOME/prompt_pure_setup" "$puredir/prompt_pure_setup"
     fi
     fpath+=("$puredir")
 fi
+cp "$DOTFILESHOME/prompt_pure_setup" "$puredir/prompt_pure_setup"
 unset puredir
 
 autoload -Uz promptinit; promptinit
