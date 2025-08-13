@@ -57,10 +57,11 @@ fi
 # # <<< conda initialize <<<
 # eval "conda config --set auto_activate_base false"
 # ====================================================================================================================================
-# uv installation
-if [ ! -f "$HOME/.local/bin/uv" ]; then
-    eval "curl -LsSf https://astral.sh/uv/install.sh | sh"
-fi
+# uv installation for python
+# NOTE: enable if using uv for python
+# if [ ! -f "$HOME/.local/bin/uv" ]; then
+#     eval "curl -LsSf https://astral.sh/uv/install.sh | sh"
+# fi
 # ====================================================================================================================================
 # all zinit config and plugins
 ZINIT_HOME="${XDG_DATA_HOME:-$HOME}/.local/share/zinit/zinit.git"
