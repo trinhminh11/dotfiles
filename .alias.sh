@@ -4,9 +4,6 @@ alias ls="ls --color=auto"
 alias la="ls -a"
 alias ll="ls -l"
 
-alias python3="uv run python3"
-alias python="uv run python"
-
 alias dot="cd $DOTFILESHOME"
 
 alias gtree='eza --tree --git --icons --git-ignore'
