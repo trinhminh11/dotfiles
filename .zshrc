@@ -27,7 +27,9 @@ if ! command -v cargo >/dev/null 2>&1; then
     esac
 fi
 
-. "$HOME/.cargo/env"
+if [[ -f "$HOME/.cargo/env" ]]; then
+    . "$HOME/.cargo/env"
+fi
 
 if ! command -v eza >/dev/null 2>&1; then
     echo "⚠️ eza is not installed. Installing eza..."
@@ -58,10 +60,9 @@ fi
 # eval "conda config --set auto_activate_base false"
 # ====================================================================================================================================
 # uv installation for python
-# NOTE: enable if using uv for python
-# if [ ! -f "$HOME/.local/bin/uv" ]; then
-#     eval "curl -LsSf https://astral.sh/uv/install.sh | sh"
-# fi
+if [ ! -f "$HOME/.local/bin/uv" ]; then
+    eval "curl -LsSf https://astral.sh/uv/install.sh | sh"
+fi
 # ====================================================================================================================================
 # all zinit config and plugins
 ZINIT_HOME="${XDG_DATA_HOME:-$HOME}/.local/share/zinit/zinit.git"
