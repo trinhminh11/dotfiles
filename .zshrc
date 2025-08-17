@@ -110,8 +110,8 @@ setopt hist_find_no_dups        # Do Not Display A Previously Found Event.
 setopt hist_ignore_space        # Do Not Record An Event Starting With A Space.
 setopt hist_save_no_dups        # Do Not Write A Duplicate Event To The History File.
 
-chmod -R +x "$DOTFILESHOME/scripts/"
-export PATH="$PATH:$DOTFILESHOME/scripts"
+chmod -R +x "$DOTFILESHOME/bin/"
+export PATH="$PATH:$DOTFILESHOME/bin/"
 
 # ====================================================================================================================================
 # FiraCode Nerd Font Installation
@@ -166,7 +166,8 @@ else
     fi
     fpath+=("$puredir")
 fi
-cp "$DOTFILESHOME/prompt_pure_setup" "$puredir/prompt_pure_setup"
+
+cp "$DOTFILESHOME/scripts/prompt_pure_setup" "$puredir/prompt_pure_setup"
 unset puredir
 
 autoload -Uz promptinit; promptinit
