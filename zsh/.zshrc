@@ -1,3 +1,7 @@
+
+export LANG=en_US.UTF-8
+export LC_ALL=en_US.UTF-8
+
 DOTFILESHOME="$HOME/dotfiles"
 
 # adding brew
@@ -173,10 +177,6 @@ zstyle :prompt:pure:git:fetch only_upstream yes
 # ====================================================================================================================================
 
 # alias
-if [ -f "$DOTFILESHOME/.alias.sh" ]; then
-    . "$DOTFILESHOME/.alias.sh"
-fi
-
 if [ -f "$HOME/.alias.sh" ]; then
     . "$HOME/.alias.sh"
 fi
