@@ -47,9 +47,8 @@ This guide helps you install your dotfiles using [GNU Stow](https://www.gnu.org/
 
     Example:
     ```sh
-    stow bash
-    stow vim
-    stow git
+    stow zsh
+    stow aliases
     ```
 
 ## Notes
