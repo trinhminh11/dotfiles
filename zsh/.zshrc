@@ -16,7 +16,6 @@ if ! command -v cargo >/dev/null 2>&1; then
 
     # Detect OS
     OS=$(uname -s)
-    case 
     
     case "$OS" in
         Darwin|Linux)
@@ -32,7 +31,7 @@ if ! command -v cargo >/dev/null 2>&1; then
             ;;
     esac
     if [ "$OS" == "Linux" ]; then
-        sudo apt install build-essential
+        sudo apt install -y build-essential
     fi
 
 if [[ -f "$HOME/.cargo/env" ]]; then
@@ -68,7 +67,8 @@ fi
 # ====================================================================================================================================
 if [ ! -d "$HOME/.fzf" ]; then
     git clone --depth 1 https://github.com/junegunn/fzf.git ~/.fzf
-    ~/.fzf/install
+    yes | ~/.fzf/install
+fi
 fi
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
 # ====================================================================================================================================
