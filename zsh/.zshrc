@@ -35,6 +35,7 @@ if [[ -f "$HOME/.cargo/env" ]]; then
     . "$HOME/.cargo/env"
 fi
 
+# eza for printing tree folder
 if ! command -v eza >/dev/null 2>&1; then
     echo "⚠️ eza is not installed. Installing eza..."
     cargo install --locked eza
@@ -45,23 +46,27 @@ if ! command -v eza >/dev/null 2>&1; then
     fi
 fi
 
+# zoxide for cd replacement 
+if ! command -v zoxide >/dev/null 2>&1; then
+    echo "⚠️ zoxide is not installed. Installing zoxide..."
+    cargo install zoxide --locked
+    if [ $? -eq 0 ]; then
+        echo "✅ zoxide installed successfully."
+    else
+        echo "❌ Failed to install zoxide."
+    fi
+fi
 # ====================================================================================================================================
-# uncomment if you want conda initialization
-# >>> conda initialize >>>
-# !! Contents within this block are managed by 'conda init' !!
-# __conda_setup="$('$HOME/miniconda3/bin/conda' 'shell.zsh' 'hook' 2> /dev/null)"
-# if [ $? -eq 0 ]; then
-#     eval "$__conda_setup"
-# else
-#     if [ -f "$HOME/miniconda3/etc/profile.d/conda.sh" ]; then
-#         . "$HOME/miniconda3/etc/profile.d/conda.sh"
-#     else
-#         export PATH="$HOME/miniconda3/bin:$PATH"
-#     fi
+# conda initialization, uncomment if you want conda initialization
+# if [ -d "$DOTFILESHOME/conda" ]; then
+#     . "$DOTFILESHOME/conda/conda.sh"
 # fi
-# unset __conda_setup
-# # <<< conda initialize <<<
-# eval "conda config --set auto_activate_base false"
+# ====================================================================================================================================
+if [ ! -d "$HOME/.fzf" ]; then
+    git clone --depth 1 https://github.com/junegunn/fzf.git ~/.fzf
+    ~/.fzf/install
+fi
+[ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
 # ====================================================================================================================================
 # uv installation for python
 if [ ! -f "$HOME/.local/bin/uv" ]; then
@@ -98,7 +103,7 @@ bindkey '^n' history-search-forward
 export __BIRTHDAY__="11042004"
 . "$HOME/.local/bin/env"
 
-HISTSIZE=5000
+HISTSIZE=10000
 HISTFILE=~/.zsh_history
 SAVEHIST=$HISTSIZE
 HISTDUP=erase
@@ -183,9 +188,14 @@ if [ -f "$HOME/.alias.sh" ]; then
 fi
 
 
-# Load zsh autocompletions
-autoload -Uz compinit && compinit
-zinit cdreplay -q
 
 zstyle ':completion:*' list-colors "${(s.:.)LS_COLORS}"
 zstyle ':completion:*' menu select
+
+eval "$(zoxide init --cmd cd zsh)"
+
+
+
+# Load zsh autocompletions
+autoload -Uz compinit && compinit
+zinit cdreplay -q

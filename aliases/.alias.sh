@@ -1,4 +1,8 @@
+alias zi=__zoxide_zi
+
 alias v=nvim
+
+alias dot="cd $DOTFILESHOME"
 
 alias ls="ls --color=auto"
 alias la="ls -a"
