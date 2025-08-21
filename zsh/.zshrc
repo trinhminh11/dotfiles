@@ -16,6 +16,8 @@ if ! command -v cargo >/dev/null 2>&1; then
 
     # Detect OS
     OS=$(uname -s)
+    case 
+    
     case "$OS" in
         Darwin|Linux)
             # Install Rust using rustup (official installer)
@@ -29,7 +31,9 @@ if ! command -v cargo >/dev/null 2>&1; then
             exit 1
             ;;
     esac
-fi
+    if [ "$OS" == "Linux" ]; then
+        sudo apt install build-essential
+    fi
 
 if [[ -f "$HOME/.cargo/env" ]]; then
     . "$HOME/.cargo/env"
