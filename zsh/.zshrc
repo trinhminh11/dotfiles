@@ -196,10 +196,9 @@ fi
 zstyle ':completion:*' list-colors "${(s.:.)LS_COLORS}"
 zstyle ':completion:*' menu select
 
-eval "$(zoxide init --cmd cd zsh)"
-
-
-
 # Load zsh autocompletions
 autoload -Uz compinit && compinit
 zinit cdreplay -q
+
+eval "$(zoxide init --cmd cd zsh)"
+
