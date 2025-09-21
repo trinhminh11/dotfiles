@@ -2,7 +2,7 @@
 export LANG=en_US.UTF-8
 export LC_ALL=en_US.UTF-8
 
-DOTFILESHOME="$HOME/dotfiles"
+DOTFILESHOME="$HOME/.dotfiles"
 
 # adding brew
 if [[ $OSTYPE == darwin* ]]; then
@@ -16,7 +16,7 @@ if ! command -v cargo >/dev/null 2>&1; then
 
     # Detect OS
     OS=$(uname -s)
-    
+
     case "$OS" in
         Darwin|Linux)
             # Install Rust using rustup (official installer)
@@ -33,6 +33,7 @@ if ! command -v cargo >/dev/null 2>&1; then
     if [ "$OS" == "Linux" ]; then
         sudo apt install -y build-essential
     fi
+fi
 
 if [[ -f "$HOME/.cargo/env" ]]; then
     . "$HOME/.cargo/env"
@@ -49,7 +50,7 @@ if ! command -v eza >/dev/null 2>&1; then
     fi
 fi
 
-# zoxide for cd replacement 
+# zoxide for cd replacement
 if ! command -v zoxide >/dev/null 2>&1; then
     echo "⚠️ zoxide is not installed. Installing zoxide..."
     cargo install zoxide --locked
@@ -68,7 +69,6 @@ fi
 if [ ! -d "$HOME/.fzf" ]; then
     git clone --depth 1 https://github.com/junegunn/fzf.git ~/.fzf
     yes | ~/.fzf/install
-fi
 fi
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
 # ====================================================================================================================================
