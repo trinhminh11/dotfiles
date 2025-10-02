@@ -186,10 +186,16 @@ zstyle :prompt:pure:git:stash show yes
 zstyle :prompt:pure:git:fetch only_upstream yes
 # ====================================================================================================================================
 
+# Load custom environment variables
+if [ -f "$HOME/.local/bin/env" ]; then
+    . "$HOME/.local/bin/env"
+fi
+
 # alias
 if [ -f "$HOME/.alias.sh" ]; then
     . "$HOME/.alias.sh"
 fi
+
 
 
 
